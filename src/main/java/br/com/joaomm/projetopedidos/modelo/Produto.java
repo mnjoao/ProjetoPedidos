@@ -2,20 +2,24 @@
 package br.com.joaomm.projetopedidos.modelo;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.*;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 /**
  *
  * @author João Marcos
  */
-
-class Produto {
+@Entity
+@Table(name = "produto")
+@Inheritance(strategy = InheritanceType.JOINED)
+public class Produto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="idProduto")
-    private int idProduto;
+    private Integer idProduto;
     @Column(name="nome")
     private String nome;
     @Column(name="valor")
@@ -23,13 +27,7 @@ class Produto {
     @Column(name="codigo")
     private int codigo;
 
-    public int getIdProduto() {
-        return idProduto;
-    }
-
-    public void setIdProduto(int idProduto) {
-        this.idProduto = idProduto;
-    }
+    
 
     public String getNome() {
         return nome;
@@ -53,5 +51,13 @@ class Produto {
 
     public void setCodigo(int codigo) {
         this.codigo = codigo;
+    }
+
+    public Integer getIdProduto() {
+        return idProduto;
+    }
+
+    public void setIdProduto(Integer idProduto) {
+        this.idProduto = idProduto;
     }
  }

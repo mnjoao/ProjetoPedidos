@@ -8,23 +8,25 @@ import jakarta.persistence.*;
  * @author João Marcos
  */
 @Entity
-@Table(name="Comida")
+@Table(name="comida")
 public class Comida extends Produto{
     
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name="idComida")
-    private int idComida;
+    private Integer idComida;
     @Column(name="vegano")
     private Boolean vegano;
     @Column(name="ingredientes")
     private String ingredientes;
+    @Column(name="peso")
+    private Float peso;
 
-    public int getIdComida() {
+    public Integer getIdComida() {
         return idComida;
     }
 
-    public void setIdComida(int idComida) {
+    public void setIdComida(Integer idComida) {
         this.idComida = idComida;
     }
 
@@ -42,6 +44,14 @@ public class Comida extends Produto{
 
     public void setIngredientes(String ingredientes) {
         this.ingredientes = ingredientes;
+    }
+
+    public Float getPeso() {
+        return peso;
+    }
+
+    public void setPeso(Float peso) {
+        this.peso = peso;
     }
     
     

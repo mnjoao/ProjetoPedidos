@@ -13,12 +13,12 @@ import jakarta.persistence.Table;
  * @author João Marcos
  */
 @Entity
-@Table(name = "Sobremas")
+@Table(name = "sobremas")
 public class Sobremesa extends Produto{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="idBebida")
-    private int idBebida; 
+    @Column(name="idSobremesa")
+    private Integer idSobremesa; 
     @Column(name="quantidade")
     private Float quantidade;
     @Column(name="doce")
@@ -26,12 +26,12 @@ public class Sobremesa extends Produto{
     @Column(name="informacao")
     private String informacao;
 
-    public int getIdBebida() {
-        return idBebida;
+    public Integer getIdSobremesa() {
+        return idSobremesa;
     }
 
-    public void setIdBebida(int idBebida) {
-        this.idBebida = idBebida;
+    public void setIdSobremesa(Integer idSobremesa) {
+        this.idSobremesa = idSobremesa;
     }
 
     public Float getQuantidade() {

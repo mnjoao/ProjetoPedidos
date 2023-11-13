@@ -1,6 +1,8 @@
 
 package br.com.joaomm.projetopedidos.modelo;
 
+import jakarta.persistence.AttributeOverride;
+import jakarta.persistence.AttributeOverrides;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -13,50 +15,94 @@ import jakarta.persistence.Table;
  * @author João Marcos
  */
 @Entity
-@Table(name = "Bebida")
+@Table(name = "bebida")
+@AttributeOverrides({
+        @AttributeOverride(name="nome", column=@Column(name="nome")),
+        @AttributeOverride(name="valor", column=@Column(name="valor")),
+        @AttributeOverride(name="codigo", column=@Column(name="codigo"))
+    })
 public class Bebida extends Produto{
-   
-    @Id
+    
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="idBebida")
-    private int idBebida;
-    @Column(name="peso")
-    private float peso;
-    @Column(name="vegano")
-    private Boolean vegano;
-    @Column(name="ingredientes")
-    private String ingredientes;
+    private Integer idBebida;
+    @Column(name="tamanho")
+    private float tamanho;
+    @Column(name="gelada")
+    private Boolean gelada;
+    @Column(name="marca")
+    private String marca;
 
-    public int getIdBebida() {
+    @Override
+    public void setCodigo(int codigo) {
+        super.setCodigo(codigo); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
+    }
+
+    @Override
+    public int getCodigo() {
+        return super.getCodigo(); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
+    }
+
+    @Override
+    public void setValor(Float valor) {
+        super.setValor(valor); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
+    }
+
+    @Override
+    public Float getValor() {
+        return super.getValor(); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
+    }
+
+    @Override
+    public void setNome(String nome) {
+        super.setNome(nome); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
+    }
+
+    @Override
+    public String getNome() {
+        return super.getNome(); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
+    }
+    
+    public Integer getIdBebida() {
         return idBebida;
     }
 
-    public void setIdBebida(int idBebida) {
+    public void setIdBebida(Integer idBebida) {
         this.idBebida = idBebida;
     }
 
-    public float getPeso() {
-        return peso;
+    public float getTamanho() {
+        return tamanho;
     }
 
-    public void setPeso(float peso) {
-        this.peso = peso;
+    public void setTamanho(float tamanho) {
+        this.tamanho = tamanho;
     }
 
-    public Boolean getVegano() {
-        return vegano;
+    public Boolean getGelada() {
+        return gelada;
     }
 
-    public void setVegano(Boolean vegano) {
-        this.vegano = vegano;
+    public void setGelada(Boolean gelada) {
+        this.gelada = gelada;
     }
 
-    public String getIngredientes() {
-        return ingredientes;
+    public String getMarca() {
+        return marca;
     }
 
-    public void setIngredientes(String ingredientes) {
-        this.ingredientes = ingredientes;
+    public void setMarca(String marca) {
+        this.marca = marca;
     }
-           
+
+    public void setGelada(boolean b) {
+       
+    }
+
+    @Override
+    public String toString() {
+        return "Bebida{" + "idBebida=" + getIdBebida() + ", tamanho=" + getTamanho() +
+                ", gelada=" + getGelada() + ", marca=" + getMarca() +", nome=" + getNome() +
+            ", codigo=" + getCodigo() + '}';
+    }  
 }

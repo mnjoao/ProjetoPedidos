@@ -6,31 +6,39 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import java.util.List;
 
 /**
  *
  * @author João Marcos
  */
-@Table(name="Solicitante")
+@Table(name="solicitante")
 @Entity
 public class Solicitante {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="idSolicitante")
-    private int idSolicitante;
+    private Integer idSolicitante;
     @Column(name="nome")
     private String nome;
     @Column(name="cpf")
     private String cpf;
     @Column(name="email")
     private String email;
-
-    public int getIdSolicitante() {
+    
+    @OneToMany(mappedBy = "solicitante")
+    private List<Pedido> pedidos;
+    
+    
+    
+    public Integer getIdSolicitante() {
         return idSolicitante;
     }
 
-    public void setIdSolicitante(int idSolicitante) {
+    public void setIdSolicitante(Integer idSolicitante) {
         this.idSolicitante = idSolicitante;
     }
 
@@ -56,5 +64,13 @@ public class Solicitante {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public List<Pedido> getPedidos() {
+        return pedidos;
+    }
+
+    public void setPedidos(List<Pedido> pedidos) {
+        this.pedidos = pedidos;
     }
 }

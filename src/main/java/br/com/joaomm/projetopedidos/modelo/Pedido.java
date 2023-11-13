@@ -3,18 +3,19 @@ package br.com.joaomm.projetopedidos.modelo;
 
 import jakarta.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 /**
  *
  * @author João Marcos
  */
 @Entity
-@Table(name = "Pedido")
+@Table(name = "pedido")
 public class Pedido {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="idPedido")
-    private int idPedido;
+    private Integer idPedido;
     @Column(name="descricao")
     private String descricao;
     @Column(name="descricao")
@@ -22,13 +23,17 @@ public class Pedido {
     @Column(name="web")
     private Boolean web;
     
-    
-    
-    public int getIdPedido() {
+    @ManyToOne
+    @JoinColumn(name = "solicitante_id")
+    private Solicitante solicitante;
+    @OneToMany(mappedBy = "pedido")
+    private List<Produto> produtos;
+
+    public Integer getIdPedido() {
         return idPedido;
     }
 
-    public void setId(int idPedido) {
+    public void setIdPedido(Integer idPedido) {
         this.idPedido = idPedido;
     }
 
@@ -54,6 +59,22 @@ public class Pedido {
 
     public void setWeb(Boolean web) {
         this.web = web;
+    }
+
+    public Solicitante getSolicitante() {
+        return solicitante;
+    }
+
+    public void setSolicitante(Solicitante solicitante) {
+        this.solicitante = solicitante;
+    }
+
+    public List<Produto> getProdutos() {
+        return produtos;
+    }
+
+    public void setProdutos(List<Produto> produtos) {
+        this.produtos = produtos;
     }
     
 }
