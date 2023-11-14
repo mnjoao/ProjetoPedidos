@@ -15,7 +15,6 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "sobremas")
 public class Sobremesa extends Produto{
-    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="idSobremesa")
     private Integer idSobremesa; 

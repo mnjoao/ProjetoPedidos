@@ -11,7 +11,7 @@ import jakarta.persistence.Persistence;
  */
 public class ConnectionFactory {
     
-   private static EntityManagerFactory emf =Persistence.createEntityManagerFactory("persisUnit");
+   private static final EntityManagerFactory emf =Persistence.createEntityManagerFactory("persisUnit");
    
    public EntityManager getConnection(){
        return emf.createEntityManager();

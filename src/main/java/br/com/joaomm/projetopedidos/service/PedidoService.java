@@ -1,4 +1,3 @@
-
 package br.com.joaomm.projetopedidos.service;
 
 import br.com.joaomm.projetopedidos.connection.ConnectionFactory;
@@ -12,12 +11,12 @@ import java.util.List;
  * @author João Marcos
  */
 public class PedidoService {
-    
-    EntityManager em = new ConnectionFactory().getConnection();
-    EntityTransaction transaction = em.getTransaction();
-        
+ 
     //metodo para criar e salvar 
     public void save(Pedido pedido) {
+        EntityManager em = new ConnectionFactory().getConnection();
+        EntityTransaction transaction = em.getTransaction();
+        
         try {
             em.getTransaction().begin();
             em.persist(pedido);
@@ -35,6 +34,8 @@ public class PedidoService {
     }
     // atualiza
     public void update(Pedido pedido) {
+        EntityManager em = new ConnectionFactory().getConnection();
+        EntityTransaction transaction = em.getTransaction();
         try {
             transaction.begin();
             // Verifica se a Categoria já existe no banco de dados com o mesmo id
@@ -62,6 +63,8 @@ public class PedidoService {
     }
      
     public Pedido findId(Integer id){
+        EntityManager em = new ConnectionFactory().getConnection();
+        EntityTransaction transaction = em.getTransaction();
         Pedido pedido = null ; 
         try {
             pedido = em.find(Pedido.class, id);
@@ -79,33 +82,37 @@ public class PedidoService {
     } 
      
     public List<Pedido> findAll(){
-        EntityManager emf = new ConnectionFactory().getConnection();
+        EntityManager em = new ConnectionFactory().getConnection();
+        EntityTransaction transaction = em.getTransaction();
         List<Pedido> pedidos = null;
         try {
-            pedidos = emf.createQuery("from Pedido").getResultList();
+            pedidos = em.createQuery("from Pedido").getResultList();
         } catch (Exception e) {
             if (transaction != null && transaction.isActive()) {
             System.err.println(e);
             }
             e.printStackTrace();
         } finally {
-            if (emf != null && emf.isOpen()) {
-                emf.close();
+            if (em != null && em.isOpen()) {
+                em.close();
             }
         }
         return pedidos;
     }
     
     public Pedido remove(Integer id){
+         EntityManager em = new ConnectionFactory().getConnection();
+        
         Pedido pedido = null ;
         try {
+            EntityTransaction transaction = em.getTransaction();
             pedido = em.find(Pedido.class, id);
             em.getTransaction().begin();
             em.remove(pedido);
             em.getTransaction().commit();
         } catch (Exception e) {
             System.err.println(e);
-            transaction.rollback();
+            em.getTransaction().rollback();
             e.printStackTrace();
         } finally {
             em.close();   

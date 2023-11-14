@@ -26,7 +26,9 @@ public class Produto {
     private Float valor;
     @Column(name="codigo")
     private int codigo;
-
+    @ManyToOne
+    @JoinColumn(name = "pedido_id") // Suponhamos que seja o nome da coluna na tabela Produto que referencia um Pedido
+    private Pedido pedido; 
     
 
     public String getNome() {

@@ -10,6 +10,7 @@ import br.com.joaomm.projetopedidos.modelo.Solicitante;
 import br.com.joaomm.projetopedidos.service.PedidoService;
 import br.com.joaomm.projetopedidos.service.ProdutoService;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -20,24 +21,25 @@ public class PedidoTeste {
     
     public static void Salvar(PedidoService pedidoService ){
         
-    PedidoService cs = new PedidoService();
-    Pedido pedido = new Pedido();
-    
-    pedido.setIdPedido(1);
-    pedido.setDescricao("pedido sem talher");
-    pedido.setWeb(Boolean.TRUE);
-    
-    Solicitante solicitante = new Solicitante();
-    solicitante.setIdSolicitante(1);
-    pedido.setSolicitante(solicitante);
-    Produto produ = new Produto();
-    produ.setIdProduto(1);
-    pedido.setProdutos((List<Produto>) produ);
-    cs.save(pedido);
-    
-    System.out.println("____Criado:________");
-    pedido.toString();
-    System.out.println();
+        PedidoService cs = new PedidoService();
+        Pedido pedido = new Pedido();
+
+        pedido.setIdPedido(1);
+        pedido.setDescricao("pedido sem talher");
+        pedido.setWeb(Boolean.TRUE);
+
+        Solicitante solicitante = new Solicitante();
+        solicitante.setIdSolicitante(1);
+        pedido.setSolicitante(solicitante);
+        Produto produ = new Produto();
+        produ.setIdProduto(1);
+        Produto produtos = new Produto();
+        pedido.setProduto(produ);
+        cs.save(pedido);
+
+        System.out.println("____Criado:________");
+        pedido.toString();
+        System.out.println();
     }
     
     public static void Atualizar(PedidoService pedidoService ){

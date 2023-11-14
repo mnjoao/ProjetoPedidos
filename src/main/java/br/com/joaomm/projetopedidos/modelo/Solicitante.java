@@ -29,8 +29,8 @@ public class Solicitante {
     @Column(name="email")
     private String email;
     
-    @OneToMany(mappedBy = "solicitante")
-    private List<Pedido> pedidos;
+    @OneToMany(mappedBy = "pedido_idPedido")
+    private Pedido pedido;
     
     
     
@@ -66,11 +66,11 @@ public class Solicitante {
         this.email = email;
     }
 
-    public List<Pedido> getPedidos() {
-        return pedidos;
+    public Pedido getPedido() {
+        return pedido;
     }
 
-    public void setPedidos(List<Pedido> pedidos) {
-        this.pedidos = pedidos;
+    public void setPedido(Pedido pedido) {
+        this.pedido = pedido;
     }
 }

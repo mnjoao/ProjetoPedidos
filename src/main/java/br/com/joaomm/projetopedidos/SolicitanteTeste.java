@@ -3,6 +3,7 @@ package br.com.joaomm.projetopedidos;
 import br.com.joaomm.projetopedidos.modelo.Pedido;
 import br.com.joaomm.projetopedidos.modelo.Solicitante;
 import br.com.joaomm.projetopedidos.service.SolicitanteService;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -19,8 +20,8 @@ public class SolicitanteTeste {
         s.setNome("Solicitante");
         
         Pedido p =new Pedido();
-        p.setIdPedido(1);
-        s.setPedidos((List<Pedido>)p);
+        p.setIdPedido(1); 
+        s.setPedido(p);
         cs.save(s);
         System.out.println("____Criado:________");
         s.toString();

@@ -18,7 +18,7 @@ public class Pedido {
     private Integer idPedido;
     @Column(name="descricao")
     private String descricao;
-    @Column(name="descricao")
+    @Column(name="LocalDateTime")
     private Date LocalDateTime;
     @Column(name="web")
     private Boolean web;
@@ -26,8 +26,9 @@ public class Pedido {
     @ManyToOne
     @JoinColumn(name = "solicitante_id")
     private Solicitante solicitante;
-    @OneToMany(mappedBy = "pedido")
-    private List<Produto> produtos;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @OneToMany(mappedBy = "produto")
+    private Produto produto;
 
     public Integer getIdPedido() {
         return idPedido;
@@ -69,12 +70,12 @@ public class Pedido {
         this.solicitante = solicitante;
     }
 
-    public List<Produto> getProdutos() {
-        return produtos;
+    public Produto getProduto() {
+        return produto;
     }
 
-    public void setProdutos(List<Produto> produtos) {
-        this.produtos = produtos;
+    public void setProduto(Produto produto) {
+        this.produto = produto;
     }
     
 }

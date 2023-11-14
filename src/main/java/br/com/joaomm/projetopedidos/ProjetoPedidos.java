@@ -11,9 +11,8 @@ public class ProjetoPedidos {
         System.out.println("Hello World!");
         
         //BebidaService bs= new BebidaService(); BebidaTeste.Salvar(bs);
+        SolicitanteService pe = new SolicitanteService();
         
-        PedidoService pe = new PedidoService();
-        PedidoTeste.Salvar(pe);
-        
+        SolicitanteTeste.Salvar(pe);
     }
 }
