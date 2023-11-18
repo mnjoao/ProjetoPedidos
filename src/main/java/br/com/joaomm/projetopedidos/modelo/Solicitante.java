@@ -15,8 +15,8 @@ import java.util.List;
  *
  * @author João Marcos
  */
-@Table(name="solicitante")
 @Entity
+@Table(name="solicitante")
 public class Solicitante {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,8 +29,8 @@ public class Solicitante {
     @Column(name="email")
     private String email;
     
-    @OneToMany(mappedBy = "pedido_idPedido")
-    private Pedido pedido;
+    @OneToMany(mappedBy = "solicitante")
+    private List<Pedido> pedidos;
     
     
     
@@ -66,11 +66,18 @@ public class Solicitante {
         this.email = email;
     }
 
-    public Pedido getPedido() {
-        return pedido;
+
+    public List<Pedido> getPedidos() {
+        return pedidos;
     }
 
-    public void setPedido(Pedido pedido) {
-        this.pedido = pedido;
+    public void setPedidos(List<Pedido> pedidos) {
+        this.pedidos = pedidos;
     }
+
+    @Override
+    public String toString() {
+        return "Solicitante{" + "idSolicitante=" + idSolicitante + ", nome=" + nome + ", cpf=" + cpf + ", email=" + email + ", pedidos=" + pedidos + '}';
+    }
+    
 }

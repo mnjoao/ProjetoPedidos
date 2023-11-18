@@ -2,6 +2,7 @@
 package br.com.joaomm.projetopedidos.modelo;
 
 import jakarta.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -24,12 +25,13 @@ public class Pedido {
     private Boolean web;
     
     @ManyToOne
-    @JoinColumn(name = "solicitante_id")
+    @JoinColumn(name ="idSolicitante",nullable = true)
     private Solicitante solicitante;
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @OneToMany(mappedBy = "produto")
-    private Produto produto;
-
+    
+    @OneToMany(mappedBy = "pedido")
+    private List<Produto> produtos;
+    
+    
     public Integer getIdPedido() {
         return idPedido;
     }
@@ -70,12 +72,13 @@ public class Pedido {
         this.solicitante = solicitante;
     }
 
-    public Produto getProduto() {
-        return produto;
+    public List<Produto> getProdutos() {
+        return produtos;
     }
 
-    public void setProduto(Produto produto) {
-        this.produto = produto;
+    public void setProdutos(List<Produto> produtos) {
+        this.produtos = produtos;
     }
-    
+
 }
+

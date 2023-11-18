@@ -19,7 +19,7 @@ public class PedidoService {
         
         try {
             em.getTransaction().begin();
-            em.persist(pedido);
+            em.merge(pedido);
             em.getTransaction().commit();
         } catch (Exception e) {
             if (transaction != null && transaction.isActive()) {
@@ -86,10 +86,16 @@ public class PedidoService {
         EntityTransaction transaction = em.getTransaction();
         List<Pedido> pedidos = null;
         try {
+            transaction.begin();
             pedidos = em.createQuery("from Pedido").getResultList();
+            for (Pedido pedido : pedidos) {
+                pedido.getProdutos().size();
+            }
+            transaction.commit();
         } catch (Exception e) {
             if (transaction != null && transaction.isActive()) {
-            System.err.println(e);
+                System.err.println(e);
+                transaction.rollback();
             }
             e.printStackTrace();
         } finally {
@@ -101,11 +107,11 @@ public class PedidoService {
     }
     
     public Pedido remove(Integer id){
-         EntityManager em = new ConnectionFactory().getConnection();
-        
+        EntityManager em = new ConnectionFactory().getConnection();
+        EntityTransaction transaction = em.getTransaction();
         Pedido pedido = null ;
         try {
-            EntityTransaction transaction = em.getTransaction();
+            
             pedido = em.find(Pedido.class, id);
             em.getTransaction().begin();
             em.remove(pedido);

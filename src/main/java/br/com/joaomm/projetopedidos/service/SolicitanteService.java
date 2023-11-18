@@ -5,6 +5,7 @@ import br.com.joaomm.projetopedidos.connection.ConnectionFactory;
 import br.com.joaomm.projetopedidos.modelo.Solicitante;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -59,37 +60,48 @@ public class SolicitanteService {
             }
         }
     }
-     
     public Solicitante findId(Integer id){
         Solicitante solicitante = null ; 
+        EntityManager em = new ConnectionFactory().getConnection();
+        EntityTransaction transaction = em.getTransaction();
         try {
-            solicitante = em.find(Solicitante.class, id);
+        transaction.begin();
+        solicitante = em.find(Solicitante.class, id);
+        // Inclui o carregamento dos pedidos associados
+        solicitante.getPedidos().size();
+        transaction.commit();
+    } catch (Exception e) {
+        if (transaction != null && transaction.isActive()) {
+            transaction.rollback();
+        }
+        e.printStackTrace();
+    } finally {
+        if (em != null && em.isOpen()) {
+            em.close();
+        }
+    }
+    return solicitante;
+}
+     
+    public List<Solicitante> findAll(){
+        EntityManager em = new ConnectionFactory().getConnection();
+        EntityTransaction transaction = em.getTransaction();
+        List<Solicitante> solicitantes = null;
+        try {
+            transaction.begin();
+            solicitantes = em.createQuery("SELECT s FROM Solicitante s", Solicitante.class)
+                    .getResultList();
+            // Inclui o carregamento dos pedidos associados
+            solicitantes.forEach(solicitante -> solicitante.getPedidos().size());
+            transaction.commit();
         } catch (Exception e) {
             if (transaction != null && transaction.isActive()) {
-                System.err.println(e);
+                transaction.rollback();
             }
             e.printStackTrace();
         } finally {
             if (em != null && em.isOpen()) {
                 em.close();
-            }
-        }
-            return solicitante;
-    } 
-     
-    public List<Solicitante> findAll(){
-        EntityManager emf = new ConnectionFactory().getConnection();
-        List<Solicitante> solicitantes = null;
-        try {
-            solicitantes = emf.createQuery("from Solicitante").getResultList();
-        } catch (Exception e) {
-            if (transaction != null && transaction.isActive()) {
-            System.err.println(e);
-            }
-            e.printStackTrace();
-        } finally {
-            if (emf != null && emf.isOpen()) {
-                emf.close();
             }
         }
         return solicitantes;

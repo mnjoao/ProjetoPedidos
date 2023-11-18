@@ -6,6 +6,7 @@
     <!-- Unidade de persistencia -->
     <persistence-unit name="persisUnit">
         <!-- Lista de entidades -->
+        <class>br.com.joaomm.projetopedidos.connection.ConnectionFactory</class>
         <class>br.com.joaomm.projetopedidos.modelo.Bebida</class>
         <class>br.com.joaomm.projetopedidos.modelo.Comida</class>
         <class>br.com.joaomm.projetopedidos.modelo.Pedido</class>
@@ -16,7 +17,7 @@
     <properties>
       <!-- Propriedades JDBC -->
         <property name="jakarta.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
-        <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/projectpedido"/>
+        <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/projetopedido"/>
         <property name="jakarta.persistence.jdbc.user" value="root"/>
         <property name="jakarta.persistence.jdbc.password" value="admin"/>
       <!-- Configurações específicas do Hibernate -->

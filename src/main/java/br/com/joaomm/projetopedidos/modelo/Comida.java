@@ -52,7 +52,11 @@ public class Comida extends Produto{
     public void setPeso(Float peso) {
         this.peso = peso;
     }
+
     
-    
+    @Override
+    public String toString() {
+        return "Comida{" + "idComida=" + idComida + ", vegano=" + vegano + ", ingredientes=" + ingredientes + ", peso=" + peso + '}';
+    }
     
 }

@@ -1,4 +1,3 @@
-
 package br.com.joaomm.projetopedidos.service;
 
 import br.com.joaomm.projetopedidos.connection.ConnectionFactory;
@@ -8,17 +7,13 @@ import jakarta.persistence.EntityTransaction;
 import java.util.List;
 
 /**
-
  * @author João Marcos
  */
-public class ComidaService {
-
-    
+public class ComidaService { 
+    //metodo para criar e salvar 
+    public static void save(Comida comida) {
     EntityManager em = new ConnectionFactory().getConnection();
     EntityTransaction transaction = em.getTransaction();
-        
-    //metodo para criar e salvar 
-    public void save(Comida comida) {
         try {
             transaction.begin();
             em.persist(comida);
@@ -36,6 +31,8 @@ public class ComidaService {
     }
     // atualiza
     public void update(Comida comida) {
+        EntityManager em = new ConnectionFactory().getConnection();
+        EntityTransaction transaction = em.getTransaction();
         try {
             transaction.begin();
             // Verifica se a Categoria já existe no banco de dados com o mesmo id
@@ -62,8 +59,10 @@ public class ComidaService {
         }
     }
      
-    public Comida findId(Integer id){
+    public static Comida findId(Integer id){
         Comida comida = null ; 
+        EntityManager em = new ConnectionFactory().getConnection();
+        EntityTransaction transaction = em.getTransaction();
         try {
             comida = em.find(Comida.class, id);
         } catch (Exception e) {
@@ -80,6 +79,8 @@ public class ComidaService {
     } 
      
     public List<Comida> findAll(){
+        EntityManager em = new ConnectionFactory().getConnection();
+        EntityTransaction transaction = em.getTransaction();
         EntityManager emf = new ConnectionFactory().getConnection();
         List<Comida> Comidas = null;
         try {
@@ -98,6 +99,8 @@ public class ComidaService {
     }
     
     public Comida remove(Integer id){
+        EntityManager em = new ConnectionFactory().getConnection();
+        EntityTransaction transaction = em.getTransaction();
         Comida comida = null ;
         try {
             comida = em.find(Comida.class, id);

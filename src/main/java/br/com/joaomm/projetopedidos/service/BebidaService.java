@@ -20,7 +20,8 @@ public class BebidaService {
     public void save(Bebida bebida) {
         try {
             transaction.begin();
-            em.persist(bebida);
+            bebida = em.merge(bebida);  // Reassocie a entidade
+            em.persist(bebida);  // Agora você pode usar persist
             transaction.commit();
         } catch (Exception e) {
             if (transaction != null && transaction.isActive()) {
@@ -38,7 +39,7 @@ public class BebidaService {
         try {
             transaction.begin();
             // Verifica se a Categoria já existe no banco de dados com o mesmo id
-            Bebida existingCategoria = em.find(Bebida.class, bebida.getIdBebida());
+            Bebida existingCategoria = em.find(Bebida.class, bebida.getIdProduto());
             // Se já existe, realiza a atualização
             if (existingCategoria != null) {
                 em.merge(bebida);

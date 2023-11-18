@@ -26,8 +26,9 @@ public class Produto {
     private Float valor;
     @Column(name="codigo")
     private int codigo;
+    
     @ManyToOne
-    @JoinColumn(name = "pedido_id") // Suponhamos que seja o nome da coluna na tabela Produto que referencia um Pedido
+    @JoinColumn(name = "idPedido", nullable = true)
     private Pedido pedido; 
     
 
@@ -61,5 +62,13 @@ public class Produto {
 
     public void setIdProduto(Integer idProduto) {
         this.idProduto = idProduto;
+    }
+
+    public Pedido getPedido() {
+        return pedido;
+    }
+
+    public void setPedido(Pedido pedido) {
+        this.pedido = pedido;
     }
  }

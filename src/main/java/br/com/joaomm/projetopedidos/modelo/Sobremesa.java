@@ -13,7 +13,7 @@ import jakarta.persistence.Table;
  * @author João Marcos
  */
 @Entity
-@Table(name = "sobremas")
+@Table(name = "sobremesa")
 public class Sobremesa extends Produto{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="idSobremesa")

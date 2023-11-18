@@ -8,11 +8,20 @@ import br.com.joaomm.projetopedidos.service.*;
 public class ProjetoPedidos {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
         
-        //BebidaService bs= new BebidaService(); BebidaTeste.Salvar(bs);
-        SolicitanteService pe = new SolicitanteService();
+        PedidoService x1 = new   PedidoService();
+        ComidaService x2 = new   ComidaService();
+        BebidaService x3 = new   BebidaService();
+        SobremesaService x4 = new   SobremesaService();
+        SolicitanteService x5 = new   SolicitanteService();
         
-        SolicitanteTeste.Salvar(pe);
+        
+        // ComidaTeste.Salvar(x2);
+        // BebidaTeste.Salvar(x3);
+        // SobremesaTeste.Salvar(x4);
+        // SolicitanteTeste.Salvar(x5);
+        // PedidoTeste.Salvar(x1);
+        
+        
     }
 }

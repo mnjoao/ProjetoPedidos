@@ -3,6 +3,7 @@ package br.com.joaomm.projetopedidos;
 import br.com.joaomm.projetopedidos.modelo.Pedido;
 import br.com.joaomm.projetopedidos.modelo.Solicitante;
 import br.com.joaomm.projetopedidos.service.SolicitanteService;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -14,52 +15,63 @@ public class SolicitanteTeste {
     public static void Salvar(SolicitanteService solicitanteService ){
         
         SolicitanteService cs = new SolicitanteService();
-        Solicitante s = new Solicitante();
-        s.setCpf("012345679");
-        s.setEmail("emial@.com");
-        s.setNome("Solicitante");
+        Solicitante solicitante = new Solicitante();
         
-        Pedido p =new Pedido();
-        p.setIdPedido(1); 
-        s.setPedido(p);
-        cs.save(s);
+        solicitante.setCpf("789");
+        solicitante.setEmail("joao@.com");
+        solicitante.setNome("Solicitante joao");
+        
+        Pedido pedido =new Pedido();
+        pedido.setIdPedido(1); 
+        
+        List<Pedido> pedidos = new ArrayList<>();
+        pedidos.add(pedido);
+        solicitante.setPedidos(pedidos);
+        cs.save(solicitante);
+        
         System.out.println("____Criado:________");
-        s.toString();
+        System.out.println("Solicitante{"+ "idSolicitante=" + solicitante.getIdSolicitante()+", nome=" +solicitante.getNome() + 
+        ", cpf=" + solicitante.getCpf() + ", email=" + solicitante.getEmail() + ", pedidos=" + solicitante.getPedidos() + '}');
+    
         System.out.println();
     }
     
     public static void Atualizar(SolicitanteService solicitanteService ){
         SolicitanteService cs = new SolicitanteService();
         Solicitante c = new Solicitante();
-
-        c.setIdSolicitante(1);
-        c.setEmail("carlo@gmail.com");
-        c.setNome("Solicitante doces");
+        c.setIdSolicitante(2);
+        c.setCpf("05436");
+        c.setEmail("joao@gmail.com");
+        c.setNome("Solicitas doces bolado");
         cs.update(c);
 
         System.out.println("______Atualizado:_____________________________");
         c.toString();
-        System.out.println();
+        System.out.println("Solicitante{" 
+                + "idSolicitante=" + c.getIdSolicitante()+ ", nome=" + c.getNome() + ", cpf=" + c.getCpf() + ", email=" + c.getEmail() + ", pedidos=" + c.getPedidos() + '}');
     }
     
     public static void chamaTodas(SolicitanteService solicitanteService ){
         SolicitanteService cs = new SolicitanteService();
         for(Solicitante c:cs.findAll()){
             System.out.println("_____Lista_de_Todas_Solicitantes_________");
-            c.toString();
+            System.out.println("Solicitante{" 
+                + "idSolicitante=" + c.getIdSolicitante()+ ", nome=" + c.getNome() + 
+                    ", cpf=" + c.getCpf() + ", email=" + c.getEmail() + ", pedidos=" + c.getPedidos() + '}');
             
         }
     }
-    
+
     public static void chamaId(SolicitanteService solicitanteService ){
         SolicitanteService cs = new SolicitanteService();
-        Solicitante c = cs.findId(2);
+        Solicitante c = cs.findId(3);
         System.out.println("_____Solicitante:________");
-        c.toString();
+        System.out.println("Solicitante{" 
+                + "idSolicitante=" + c.getIdSolicitante()+ ", nome=" + c.getNome() + ", cpf=" + c.getCpf() + ", email=" + c.getEmail() + ", pedidos=" + c.getPedidos() + '}');
     }
     
     public static void remover(SolicitanteService solicitanteService ){
-        Integer cate=6;
+        Integer cate=2;
         SolicitanteService cs = new SolicitanteService();
         Solicitante c = cs.remove(cate);
         System.out.println("_____Solicitante_Removida________");
